@@ -1,0 +1,9 @@
+<h1 *ngIf="!events"><em>Loading...</em></h1>
+<table class='table table-striped'
+       *ngIf="events.length">
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{event.utcTimeStamp | utcToLocalTime : 'full' }} : {{event | chatHistoryEntry}}</td>
+    </tr>
+  </tbody>
+</table>

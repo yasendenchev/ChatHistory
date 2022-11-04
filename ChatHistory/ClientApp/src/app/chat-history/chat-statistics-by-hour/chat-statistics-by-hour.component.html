@@ -1,0 +1,20 @@
+<h1 *ngIf="!hourlyData"><em>Loading...</em></h1>
+<table class='table table-striped'
+       *ngIf="hourlyData.length">
+  <tbody>
+    <tr *ngFor="let hourlyChat of hourlyData">
+      <td>{{hourlyChat.utcTimeStamp | utcToLocalTime : 'short' }}:</td>
+      <td> {{hourlyChat.joinedCount}} Joined</td>
+      <td> {{hourlyChat.leftCount}} Left</td>
+      <td> {{hourlyChat.commentCount}} Commented</td>
+      <td *ngIf="hourlyChat.highFiveInitiatorsCount && hourlyChat.highFiveRecipientsCount; else noHighFives">
+        {{hourlyChat.highFiveInitiatorsCount}} people high-fived 
+        {{hourlyChat.highFiveRecipientsCount}} other people
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noHighFives>
+  <td>No high fives for this period</td>
+</ng-template>
